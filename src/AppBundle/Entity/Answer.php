@@ -16,6 +16,16 @@ class Answer implements ResourceInterface
     protected $content;
     /** @var Challenge */
     protected $challenge;
+    /** @var string */
+    protected $deviceBrand;
+    /** @var string */
+    protected $deviceModel;
+    /** @var string */
+    protected $deviceOS;
+    /** @var string */
+    protected $deviceOSVersion;
+    /** @var string */
+    protected $timeResult;
 
     /**
      * @return int
@@ -95,5 +105,90 @@ class Answer implements ResourceInterface
     public function setChallenge(Challenge $challenge)
     {
         $this->challenge = $challenge;
+    }
+
+    /**
+     * @return string
+     */
+    public function getDeviceBrand()
+    {
+        return $this->deviceBrand;
+    }
+
+    /**
+     * @param string $deviceBrand
+     */
+    public function setDeviceBrand($deviceBrand)
+    {
+        $this->deviceBrand = $deviceBrand;
+    }
+
+    /**
+     * @return string
+     */
+    public function getDeviceModel()
+    {
+        return $this->deviceModel;
+    }
+
+    /**
+     * @param string $deviceModel
+     */
+    public function setDeviceModel($deviceModel)
+    {
+        $this->deviceModel = $deviceModel;
+    }
+
+    /**
+     * @return string
+     */
+    public function getDeviceOS()
+    {
+        return $this->deviceOS;
+    }
+
+    /**
+     * @param string $deviceOS
+     */
+    public function setDeviceOS($deviceOS)
+    {
+        $this->deviceOS = $deviceOS;
+    }
+
+    /**
+     * @return string
+     */
+    public function getDeviceOSVersion()
+    {
+        return $this->deviceOSVersion;
+    }
+
+    /**
+     * @param string $deviceOSVersion
+     */
+    public function setDeviceOSVersion($deviceOSVersion)
+    {
+        $this->deviceOSVersion = $deviceOSVersion;
+    }
+
+    /**
+     * @return string
+     */
+    public function getTimeResult()
+    {
+        return $this->timeResult;
+    }
+
+    /**
+     * @param string $timeResult
+     */
+    public function setTimeResult($timeResult)
+    {
+        $this->timeResult = $timeResult;
+    }
+
+    public function isCorrect()
+    {
+        return $this->getContent() === $this->getChallenge()->getCorrectAnswer();
     }
 }

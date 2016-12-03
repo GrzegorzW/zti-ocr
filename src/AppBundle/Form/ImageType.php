@@ -16,6 +16,7 @@ class ImageType extends AbstractType
     {
         $builder->add('imageFile', FileType::class, [
             'description' => 'Image file',
+            'label' => 'challenge.imageFile',
             'constraints' => [
                 new NotBlank(),
                 new File([

@@ -3,11 +3,7 @@
 namespace AppBundle\Form;
 
 use AppBundle\Entity\Challenge;
-use AppBundle\Validator\Constraints\NotEmptyArrayCollection;
-use AppBundle\Validator\Constraints\UniqueQuestionAnswers;
 use Symfony\Component\Form\AbstractType;
-use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
-use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -18,33 +14,28 @@ class ChallengeType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('content', TextType::class, [
-                'description' => 'Text content',
+            ->add('name', TextType::class, [
+                'description' => 'Challenge name',
+                'label' => 'challenge.name',
                 'constraints' => [
                     new NotBlank()
                 ]
             ])
-            ->add('correctAnswer', AnswerType::class, [
+            ->add('correctAnswer', TextType::class, [
                 'description' => 'Correct answer',
+                'label' => 'challenge.correctAnswer',
                 'constraints' => [
                     new NotBlank()
                 ]
+            ])
+            ->add('description', TextType::class, [
+                'description' => 'Challenge description',
+                'label' => 'challenge.description',
+                'required' => false
             ])
             ->add('image', ImageType::class, [
                 'description' => 'Image',
-                'constraints' => [
-                    new NotBlank()
-                ]
-            ])
-            ->add('status', ChoiceType::class, [
-                'description' => 'Status',
-                'required' => true,
-                'expanded' => true,
-                'multiple' => false,
-                'choices' => [
-                    Challenge::STATUS_ENABLED,
-                    Challenge::STATUS_DISABLED
-                ],
+                'label' => 'challenge.image',
                 'constraints' => [
                     new NotBlank()
                 ]

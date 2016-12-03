@@ -38,3 +38,10 @@ services:
         arguments: ['@twig.extension.httpfoundation', '@file.filesystem_manager']
         tags:
             - { name: doctrine.event_subscriber, connection: default }
+
+
+    app.user_type:
+        class: AppBundle\Form\UserType
+        arguments: ['@security.token_storage']
+        tags:
+            - { name: form.type }

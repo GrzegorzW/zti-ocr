@@ -21,8 +21,20 @@ AppBundle\Entity\Answer:
         content:
             type: string
             nullable: false
-        correct:
-            type: boolean
+        deviceBrand:
+            type: string
+            nullable: false
+        deviceModel:
+            type: string
+            nullable: false
+        deviceOS:
+            type: string
+            nullable: false
+        deviceOSVersion:
+            type: string
+            nullable: false
+        timeResult:
+            type: float
             nullable: false
     manyToOne:
         challenge:

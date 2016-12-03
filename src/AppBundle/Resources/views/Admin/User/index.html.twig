@@ -1,0 +1,85 @@
+{% from 'AppBundle::pagination.html.twig' import pagination %}
+
+{% extends "AppBundle::layout.html.twig" %}
+{% block title %}{{ 'user.list.header'|trans }}{% endblock %}
+{% block content %}
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title pull-left">{{ 'user.list.header'|trans }}</h3>
+                    <a href="{{ path('admin_user_add') }}" class="btn btn-sm btn-primary pull-right">
+                        <i class="fa fa-plus"></i> {{ 'user.list.add_button'|trans }}
+                    </a>
+                    <div class="col-md-3 pull-right">
+                        <form method="get">
+                            <div class="form-group input-group">
+                                <input name="q" type="text" class="form-control" value="{{ app.request.get('q') }}">
+                                <span class="input-group-btn">
+                                    <button class="btn btn-default" type="submit">
+                                        <i class="fa fa-search"></i>
+                                    </button>
+                                </span>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+                <div class="panel-body">
+                    <div class="table-responsive">
+                        <table class="table table-bordered table-hover table-striped">
+                            <thead>
+                            <tr>
+                                <th>{{ resources_bundle_sort('email', 'user.email'|trans) }}</th>
+                                <th>{{ resources_bundle_sort('enabled', 'user.enabled'|trans) }}</th>
+                                <th>{{ resources_bundle_sort('createdAt', 'user.createdAt'|trans) }}</th>
+                                <th class="text-right">{{ 'actions'|trans }}</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            {% if paginator|length == 0 %}
+                                <tr>
+                                    <td class="text-center" colspan="4">
+                                        {% if app.request.get('q') %}
+                                            {{ 'user.list.search.not.found'|trans }}
+                                        {% else %}
+                                            {{ 'user.list.not.found'|trans }}
+                                            <a href="{{ path('admin_user_add') }}"
+                                               class="font-bold">{{ 'user.list.add_button'|trans }} &raquo;</a>
+                                        {% endif %}
+                                    </td>
+                                </tr>
+                            {% endif %}
+                            {# user \AppBundle\Entity\User #}
+                            {% for user in paginator %}
+                                <tr>
+                                    <td>
+                                        {{ user.email }}
+                                    </td>
+                                    <td>
+                                        {% if user.enabled %}
+                                            <i class="fa fa-check text-success"></i>
+                                        {% else %}
+                                            <i class="fa fa-times text-danger"></i>
+                                        {% endif %}
+                                    </td>
+                                    <td>
+                                        {{ user.createdAt|date }}
+                                    </td>
+                                    <td class="text-right">
+                                        <a href="{{ path('admin_user_edit', {'id': user.id}) }}"
+                                           class="btn btn-xs btn-primary">
+                                            <i class="fa fa-times"></i> {{ 'edit'|trans }}
+                                        </a>
+                                    </td>
+                                </tr>
+                            {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            {{ pagination(paginator) }}
+        </div>
+    </div>
+{% endblock %}

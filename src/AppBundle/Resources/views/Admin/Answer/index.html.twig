@@ -1,0 +1,80 @@
+{% from 'AppBundle::pagination.html.twig' import pagination %}
+
+{% extends "AppBundle::layout.html.twig" %}
+{% block title %}{{ 'answer.list.header'|trans }}{% endblock %}
+{% block content %}
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title pull-left">{{ 'answer.list.header'|trans }}</h3>
+                    <a href="{{ path('admin_answer_index') }}" class="btn btn-sm btn-primary pull-right">
+                        <i class="fa fa-plus"></i> {{ 'answer.list.add_button'|trans }}
+                    </a>
+                    <div class="col-md-3 pull-right">
+                        <form method="get">
+                            <div class="form-group input-group">
+                                <input name="q" type="text" class="form-control" value="{{ app.request.get('q') }}">
+                                <span class="input-group-btn">
+                                    <button class="btn btn-default" type="submit">
+                                        <i class="fa fa-search"></i>
+                                    </button>
+                                </span>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+                <div class="panel-body">
+                    <div class="table-responsive">
+                        <table class="table table-bordered table-hover table-striped">
+                            <thead>
+                            <tr>
+                                <th>{{ resources_bundle_sort('deviceBrand', 'answer.deviceBrand'|trans) }}</th>
+                                <th>{{ resources_bundle_sort('deviceModel', 'answer.deviceModel'|trans) }}</th>
+                                <th>{{ resources_bundle_sort('deviceOS', 'answer.deviceOS'|trans) }}</th>
+                                <th>{{ resources_bundle_sort('deviceOSVersion', 'answer.deviceOSVersion'|trans) }}</th>
+                                <th>{{ resources_bundle_sort('timeResult', 'answer.timeResult'|trans) }}</th>
+                                <th class="text-right">{{ 'actions'|trans }}</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            {% if paginator|length == 0 %}
+                                <tr>
+                                    <td class="text-center" colspan="6">
+                                        {% if app.request.get('q') %}
+                                            {{ 'answer.list.search.not.found'|trans }}
+                                        {% else %}
+                                            {{ 'answer.list.not.found'|trans }}
+                                        {% endif %}
+                                    </td>
+                                </tr>
+                            {% endif %}
+                            {# answer \AppBundle\Entity\\AppBundle\Entity\Answer #}
+                            {% for answer in paginator %}
+                                <tr>
+                                    <td>{{ answer.deviceBrand }}</td>
+                                    <td>{{ answer.deviceModel }}</td>
+                                    <td>{{ answer.deviceOS }}</td>
+                                    <td>{{ answer.deviceOSVersion }}</td>
+                                    <td>{{ answer.deviceTimeResult }}</td>
+                                    <td>
+                                        {{ answer.createdAt|date }}
+                                    </td>
+                                    <td class="text-right">
+                                        <a href="{{ path('admin_answer_delete', {'id': challenge.id}) }}"
+                                           class="btn btn-xs btn-primary">
+                                            <i class="fa fa-times"></i> {{ 'remove'|trans }}
+                                        </a>
+                                    </td>
+                                </tr>
+                            {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            {{ pagination(paginator) }}
+        </div>
+    </div>
+{% endblock %}

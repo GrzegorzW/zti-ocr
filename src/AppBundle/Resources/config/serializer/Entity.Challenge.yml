@@ -9,9 +9,9 @@ AppBundle\Entity\Question:
             groups: [challenge_admin]
         status:
             groups: [challenge_admin]
-        content:
-            groups: [challenge_simple, answer_detailed]
-        category:
+        name:
+            groups: [challenge_simple]
+        description:
             groups: [challenge_simple]
         image:
             groups: [challenge_simple]

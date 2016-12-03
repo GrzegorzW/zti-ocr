@@ -1,0 +1,12 @@
+{% macro pagination(paginator) %}
+    {% if paginator.haveToPaginate() %}
+        <div class="row">
+            <div class="col-sm-4 hidden-xs"></div>
+            <div class="col-sm-4"></div>
+            <div class="col-sm-4 text-right text-center-xs">
+                {{ pagerfanta(paginator, 'twitter_bootstrap3_translated', options|default({})) }}
+                {{ resources_bundle_paginate(paginator) }}
+            </div>
+        </div>
+    {% endif %}
+{% endmacro %}

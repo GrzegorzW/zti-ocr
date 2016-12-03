@@ -18,19 +18,22 @@ AppBundle\Entity\Challenge:
             gedmo:
                 timestampable:
                     on: update
-        status:
+        name:
             type: string
             nullable: false
-        content:
+        correctAnswer:
             type: string
             nullable: false
+        description:
+            type: string
+            nullable: true
     oneToOne:
         image:
             targetEntity: AppBundle\Entity\Image
             mappedBy: challenge
-            cascade: ["persist"]
+            cascade: ["persist", "remove"]
     oneToMany:
         answers:
             targetEntity: AppBundle\Entity\Answer
             mappedBy: challenge
-            cascade: ["persist"]
+            cascade: ["persist", "remove"]

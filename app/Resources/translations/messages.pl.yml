@@ -1,0 +1,87 @@
+admin.main.name: OCR Benchmark
+dashboard: Dashboard
+logout: Wyloguj
+
+actions: Akcje
+remove: Usuń
+edit: Edytuj
+yes: Tak
+no: Nie
+
+login:
+    title: Zaloguj się
+    header: Zaloguj się
+    password: Hasło
+    button: Zaloguj
+    login: Login
+    remember_me: Zapamiętaj mnie
+    bad_credentials: Złe dane
+
+user:
+    enabled: Konto włączone
+    email: Email
+    password: Hasło
+    password_repeat: Powtórz hasło
+    status: Status
+    status_verified: Zatwierdzony
+    status_notVerified: Niezatwierdzony
+    firstName: Imie
+    lastName: Nazwisko
+    country: Kraj
+    phone: Telefon
+    professionPermit: Prawo wykonywania zawodu
+    specializations: Specjalizacje
+    defaultCalculator: Domyślny kalkulator
+    createdAt: Data utworzenia
+    remove.confirm: Czy na pewno chcesz usunąć użytkownika?
+    remove.success: Pomyślnie usunięto użytkownika.
+    list:
+        header: Lista użytkowników
+        add_button: Dodaj użytkownika
+        search.not.found: Nie znaleziono
+        not.found: Brak użytkowników
+    add:
+        header: Dodaj użytkownika
+        button: Stwórz użytkownika
+        success: Pomyślnie dodano użytkownika
+
+    edit:
+        header: Edytuj użytkownika
+        button: Edytuj użytkownika
+        success: Pomyślnie zedytowano użytkownika
+
+challenge:
+    name: Nazwa wyzwania
+    createdAt: Data utworzenia
+    correctAnswer: Rozwiązanie
+    description: Opis
+    name: Nazwa
+    image: Zdjęcie
+    imageFile: Plik
+    list:
+        header: Lista wyzwań
+        add_button: Dodaj wyzwanie
+        search.not.found: Nie znaleziono
+        not.found: Brak wyzwań
+    add:
+        header: Dodaj wyzwanie
+        button: Stwórz wyzwanie
+        success: Pomyślnie dodano wyzwanie
+    edit:
+        header: Edytuj wyzwanie
+        button: Edytuj wyzwanie
+        success: Pomyślnie zedytowano wyzwanie
+
+answer:
+    createdAt: Data utworzenia
+    content: Rozwiązanie
+    deviceBrand: Marka
+    deviceModel: Model
+    deviceOS: System operacyjny
+    deviceOSVersion: Wersja systemu
+    timeResult: Wynik
+    list:
+        header: Lista rozwiązań
+        add_button: Dodaj rozwiązanie
+        search.not.found: Nie znaleziono
+        not.found: Brak rozwiązań

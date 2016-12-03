@@ -1,10 +1,10 @@
-api:
+app:
     resource: "@AppBundle/Resources/config/routing.yml"
-    prefix:   /api/
+    prefix:   /
 
 api_get_token:
     path:     /api/token/get
-    defaults: { _controller: AppBundle:GetJWT:getToken }
+    defaults: { _controller: AppBundle:Api/GetJWT:getToken }
     methods: ['POST']
 
 api_refresh_token:

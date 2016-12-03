@@ -7,17 +7,16 @@ use ModernFactory\ResourcesBundle\Resource\Model\ResourceInterface;
 
 class Challenge implements ResourceInterface
 {
-    const STATUS_ENABLED = 'enabled';
-    const STATUS_DISABLED = 'disabled';
-
     /** @var integer */
     protected $id;
     /** @var \DateTime */
     protected $createdAt;
     /** @var \DateTime */
     protected $updatedAt;
-    /** @var  string */
-    protected $status;
+    /** @var string */
+    protected $name;
+    /** @var string */
+    protected $correctAnswer;
     /** @var string */
     protected $description;
     /** @var Image */
@@ -81,22 +80,6 @@ class Challenge implements ResourceInterface
     /**
      * @return string
      */
-    public function getStatus()
-    {
-        return $this->status;
-    }
-
-    /**
-     * @param string $status
-     */
-    public function setStatus($status)
-    {
-        $this->status = $status;
-    }
-
-    /**
-     * @return string
-     */
     public function getDescription()
     {
         return $this->description;
@@ -142,5 +125,37 @@ class Challenge implements ResourceInterface
     {
         $this->answers = $answers;
         $answers->setChallenge($this);
+    }
+
+    /**
+     * @return string
+     */
+    public function getName()
+    {
+        return $this->name;
+    }
+
+    /**
+     * @param string $name
+     */
+    public function setName($name)
+    {
+        $this->name = $name;
+    }
+
+    /**
+     * @return string
+     */
+    public function getCorrectAnswer()
+    {
+        return $this->correctAnswer;
+    }
+
+    /**
+     * @param string $correctAnswer
+     */
+    public function setCorrectAnswer($correctAnswer)
+    {
+        $this->correctAnswer = $correctAnswer;
     }
 }
