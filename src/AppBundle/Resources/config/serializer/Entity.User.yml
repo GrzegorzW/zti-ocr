@@ -1,0 +1,12 @@
+AppBundle\Entity\User:
+    exclusion_policy: ALL
+    properties:
+        shortId:
+            groups: [user_simple]
+            serialized_name: id
+        createdAt:
+            groups: [user_detailed]
+        updatedAt:
+            groups: [user_detailed]
+        deleted:
+            groups: [user_admin]

@@ -1,0 +1,15 @@
+AppBundle\Entity\Answer:
+    exclusion_policy: ALL
+    properties:
+        id:
+            groups: [answer_simple, challenge_detailed]
+        createdAt:
+            groups: [answer_admin]
+        updatedAt:
+            groups: [answer_admin]
+        status:
+            groups: [answer_admin]
+        content:
+            groups: [answer_simple, challenge_detailed]
+        challenge:
+            groups: [answer_detailed]

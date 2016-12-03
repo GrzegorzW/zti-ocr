@@ -1,0 +1,17 @@
+parameters:
+    jms_serializer.camel_case_naming_strategy.class:
+        JMS\Serializer\Naming\IdenticalPropertyNamingStrategy
+
+services:
+    gedmo.listener.timestampable:
+        class: Gedmo\Timestampable\TimestampableListener
+        tags:
+            - { name: doctrine.event_subscriber, connection: default }
+        calls:
+            - [ setAnnotationReader, [ "@annotation_reader" ] ]
+
+    easycorp.easylog.handler:
+        class: EasyCorp\EasyLog\EasyLogHandler
+        public: false
+        arguments:
+            - '%kernel.logs_dir%/%kernel.environment%.log'

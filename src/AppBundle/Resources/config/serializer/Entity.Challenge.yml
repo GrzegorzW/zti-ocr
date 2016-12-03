@@ -1,0 +1,19 @@
+AppBundle\Entity\Question:
+    exclusion_policy: ALL
+    properties:
+        id:
+            groups: [challenge_simple, answer_detailed, image_detailed]
+        createdAt:
+            groups: [challenge_admin]
+        updatedAt:
+            groups: [challenge_admin]
+        status:
+            groups: [challenge_admin]
+        content:
+            groups: [challenge_simple, answer_detailed]
+        category:
+            groups: [challenge_simple]
+        image:
+            groups: [challenge_simple]
+        answers:
+            groups: [challenge_detailed, answer_detailed]

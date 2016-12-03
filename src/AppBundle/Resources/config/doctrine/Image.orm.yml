@@ -1,0 +1,46 @@
+AppBundle\Entity\Image:
+    type: entity
+    table: images
+    repositoryClass: AppBundle\Repository\ImageRepository
+
+    id:
+        id:
+            type: integer
+            generator: { strategy: auto }
+    fields:
+        filesystem:
+            type: string
+            length: 255
+            nullable: false
+        originalName:
+            type: string
+            length: 255
+            nullable: false
+        imageName:
+            type: string
+            length: 255
+            nullable: false
+        mimeType:
+            type: string
+            length: 64
+            nullable: false
+        size:
+            type: integer
+            nullable: false
+        createdAt:
+            type: datetime
+            gedmo:
+                timestampable:
+                    on: create
+        updatedAt:
+            type: datetime
+            gedmo:
+                timestampable:
+                    on: update
+    oneToOne:
+        challenge:
+            targetEntity: AppBundle\Entity\Challenge
+            inversedBy: image
+            joinColumn:
+                name: challenge_id
+                referencedColumnName: id

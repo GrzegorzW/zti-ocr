@@ -1,0 +1,36 @@
+AppBundle\Entity\Challenge:
+    type: entity
+    table: challenges
+    repositoryClass: AppBundle\Repository\ChallengeRepository
+
+    id:
+        id:
+            type: integer
+            generator: { strategy: auto }
+    fields:
+        createdAt:
+            type: datetime
+            gedmo:
+                timestampable:
+                    on: create
+        updatedAt:
+            type: datetime
+            gedmo:
+                timestampable:
+                    on: update
+        status:
+            type: string
+            nullable: false
+        content:
+            type: string
+            nullable: false
+    oneToOne:
+        image:
+            targetEntity: AppBundle\Entity\Image
+            mappedBy: challenge
+            cascade: ["persist"]
+    oneToMany:
+        answers:
+            targetEntity: AppBundle\Entity\Answer
+            mappedBy: challenge
+            cascade: ["persist"]

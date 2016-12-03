@@ -1,0 +1,20 @@
+AppBundle\Entity\User:
+    type: entity
+    table: users
+    repositoryClass: AppBundle\Repository\UserRepository
+
+    id:
+        id:
+            type: integer
+            generator: { strategy: auto }
+    fields:
+        createdAt:
+            type: datetime
+            gedmo:
+                timestampable:
+                    on: create
+        updatedAt:
+            type: datetime
+            gedmo:
+                timestampable:
+                    on: update

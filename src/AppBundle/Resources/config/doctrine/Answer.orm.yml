@@ -1,0 +1,33 @@
+AppBundle\Entity\Answer:
+    type: entity
+    table: answers
+    repositoryClass: AppBundle\Repository\AnswerRepository
+
+    id:
+        id:
+            type: integer
+            generator: { strategy: auto }
+    fields:
+        createdAt:
+            type: datetime
+            gedmo:
+                timestampable:
+                    on: create
+        updatedAt:
+            type: datetime
+            gedmo:
+                timestampable:
+                    on: update
+        content:
+            type: string
+            nullable: false
+        correct:
+            type: boolean
+            nullable: false
+    manyToOne:
+        challenge:
+            targetEntity: AppBundle\Entity\Challenge
+            inversedBy: answers
+            joinColumn:
+                name: challenge_id
+                referencedColumnName: id

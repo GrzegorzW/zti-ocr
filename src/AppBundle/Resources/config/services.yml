@@ -1,0 +1,40 @@
+services:
+    app.pagination_manager:
+        class: AppBundle\Service\PaginationManager
+
+    file.filesystem_manager:
+        class: AppBundle\Service\FilesystemManager
+        arguments:
+          - "@oneup_flysystem.mount_manager"
+
+    app.answer_manager:
+            class: AppBundle\Service\AnswersManager
+            arguments:
+              - "@app.answer_repository"
+
+    app.answer_repository:
+        class: AppBundle\Repository\AnswerRepository
+        factory: ["@doctrine", 'getRepository']
+        arguments:
+          - AppBundle\Entity\Answer
+    app.image_repository:
+        class: AppBundle\Repository\ImageRepository
+        factory: ["@doctrine", 'getRepository']
+        arguments:
+          - AppBundle\Entity\Image
+    app.challenge_repository:
+        class: AppBundle\Repository\ChallengeRepository
+        factory: ["@doctrine", 'getRepository']
+        arguments:
+          - AppBundle\Entity\Challenge
+    app.user_repository:
+        class: AppBundle\Repository\UserRepository
+        factory: ["@doctrine", 'getRepository']
+        arguments:
+          - AppBundle\Entity\User
+
+    app.image_subscriber:
+        class: AppBundle\EventSubscriber\ImageSubscriber
+        arguments: ['@twig.extension.httpfoundation', '@file.filesystem_manager']
+        tags:
+            - { name: doctrine.event_subscriber, connection: default }

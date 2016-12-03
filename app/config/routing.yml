@@ -1,0 +1,16 @@
+api:
+    resource: "@AppBundle/Resources/config/routing.yml"
+    prefix:   /api/
+
+api_get_token:
+    path:     /api/token/get
+    defaults: { _controller: AppBundle:GetJWT:getToken }
+    methods: ['POST']
+
+api_refresh_token:
+    path:     /api/token/refresh
+    defaults: { _controller: gesdinet.jwtrefreshtoken:refresh }
+
+NelmioApiDocBundle:
+    resource: "@NelmioApiDocBundle/Resources/config/routing.yml"
+    prefix:   /doc/api
