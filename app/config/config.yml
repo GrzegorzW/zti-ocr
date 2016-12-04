@@ -115,16 +115,6 @@ fos_rest:
              'Symfony\Component\HttpKernel\Exception\HttpException': true
              'Symfony\Component\HttpKernel\Exception\NotFoundHttpException': true
 
-oneup_flysystem:
-    adapters:
-        drive0:
-            local:
-                directory: "%kernel.root_dir%/../web/uploads/drive0"
-    filesystems:
-        fs0:
-            adapter: drive0
-            mount: drive0
-
 nelmio_cors:
     defaults:
         allow_credentials: false
@@ -136,7 +126,7 @@ nelmio_cors:
         hosts: []
         origin_regex: false
     paths:
-        '^/':
+        '^/api':
             allow_credentials: true
             allow_origin: ['*']
             allow_headers: ['*']
@@ -154,3 +144,33 @@ gesdinet_jwt_refresh_token:
     ttl_update: false
     firewall: refresh
     user_provider: fos_user.user_provider.username_email
+
+liip_imagine:
+    resolvers:
+        default:
+            web_path: ~
+    filter_sets:
+        cache: ~
+        thumbnail:
+            quality: 75
+            filters:
+                thumbnail: { size: [226, 135], mode: outbound }
+        list:
+            quality: 75
+            filters:
+                thumbnail: { size: [30, 30], mode: outbound }
+    loaders:
+        drive0:
+            flysystem:
+                filesystem_service: oneup_flysystem.fs0_filesystem
+    data_loader: drive0
+
+oneup_flysystem:
+    adapters:
+        drive0:
+            local:
+                directory: "%kernel.root_dir%/../web/uploads/drive0"
+    filesystems:
+        fs0:
+            adapter: drive0
+            mount: drive0

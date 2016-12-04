@@ -33,6 +33,7 @@
                                 <th>{{ resources_bundle_sort('name', 'challenge.name'|trans) }}</th>
                                 <th>{{ resources_bundle_sort('correctAnswer', 'challenge.correctAnswer'|trans) }}</th>
                                 <th>{{ resources_bundle_sort('description', 'challenge.description'|trans) }}</th>
+                                <th>Zdjęcie</th>
                                 <th>{{ resources_bundle_sort('createdAt', 'challenge.createdAt'|trans) }}</th>
                                 <th class="text-right">{{ 'actions'|trans }}</th>
                             </tr>
@@ -62,6 +63,13 @@
                                     </td>
                                     <td>
                                         {{ challenge.description }}
+                                    </td>
+                                    <td>
+                                        {% if challenge.image %}
+                                            <img src="{{ challenge.image.imagePath|imagine_filter('list') }}"/>
+                                        {% else %}
+                                            -
+                                        {% endif %}
                                     </td>
                                     <td>
                                         {{ challenge.createdAt|date }}

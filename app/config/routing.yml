@@ -14,3 +14,6 @@ api_refresh_token:
 NelmioApiDocBundle:
     resource: "@NelmioApiDocBundle/Resources/config/routing.yml"
     prefix:   /doc/api
+
+_liip_imagine:
+    resource: "@LiipImagineBundle/Resources/config/routing.xml"

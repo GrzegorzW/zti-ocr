@@ -50,22 +50,6 @@ class Image implements ResourceInterface
     /**
      * @return string
      */
-    public function getShortId()
-    {
-        return $this->shortId;
-    }
-
-    /**
-     * @param string $shortId
-     */
-    public function setShortId($shortId)
-    {
-        $this->shortId = $shortId;
-    }
-
-    /**
-     * @return string
-     */
     public function getFilesystem()
     {
         return $this->filesystem;

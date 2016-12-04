@@ -71,6 +71,8 @@ challenge:
         header: Edytuj wyzwanie
         button: Edytuj wyzwanie
         success: Pomyślnie zedytowano wyzwanie
+    delete:
+        success: Pomyślnie usunięto
 
 answer:
     createdAt: Data utworzenia

@@ -21,4 +21,6 @@
 !/web/uploads
 /web/uploads/*
 !web/uploads/.gitkeep
-
+!/web/media
+/web/media/*
+!web/media/.gitkeep

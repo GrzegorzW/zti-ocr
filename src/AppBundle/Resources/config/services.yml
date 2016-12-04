@@ -8,7 +8,7 @@ services:
           - "@oneup_flysystem.mount_manager"
 
     app.answer_manager:
-            class: AppBundle\Service\AnswersManager
+            class: AppBundle\Service\AnswerManager
             arguments:
               - "@app.answer_repository"
 
@@ -38,7 +38,6 @@ services:
         arguments: ['@twig.extension.httpfoundation', '@file.filesystem_manager']
         tags:
             - { name: doctrine.event_subscriber, connection: default }
-
 
     app.user_type:
         class: AppBundle\Form\UserType
