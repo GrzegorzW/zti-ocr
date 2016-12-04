@@ -33,6 +33,8 @@ class AnswerController extends ApiController
      *
      * @param Request $request
      * @return \Symfony\Component\HttpFoundation\Response
+     * @throws \Doctrine\ORM\OptimisticLockException
+     * @throws \Doctrine\ORM\ORMInvalidArgumentException
      * @throws \Symfony\Component\HttpKernel\Exception\HttpException
      * @throws \InvalidArgumentException
      * @throws \Symfony\Component\OptionsResolver\Exception\InvalidOptionsException
@@ -50,13 +52,10 @@ class AnswerController extends ApiController
         }
 
         if (!$answer->isCorrect()) {
-            $msg = sprintf(
-                'Your answer is incorrect. Expected: %s, given: %s',
-                $answer->getChallenge()->getCorrectAnswer(),
-                $answer->getContent()
-            );
-            throw new HttpException(418, $msg);
+            throw new HttpException(418, 'Your answer is incorrect.');
         }
+
+        $this->get('app.answer_repository')->save($answer);
 
         return $this->response([], 204);
     }

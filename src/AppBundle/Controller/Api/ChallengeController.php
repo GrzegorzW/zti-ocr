@@ -4,6 +4,7 @@ namespace AppBundle\Controller\Api;
 
 use FOS\RestBundle\Controller\Annotations as Rest;
 use Nelmio\ApiDocBundle\Annotation\ApiDoc;
+use Symfony\Component\HttpFoundation\Request;
 
 class ChallengeController extends ApiController
 {
@@ -29,15 +30,21 @@ class ChallengeController extends ApiController
      *
      * @Rest\Get("/challenges")
      *
+     * @param Request $request
      * @return \Symfony\Component\HttpFoundation\Response
-     * @throws \Symfony\Component\HttpKernel\Exception\BadRequestHttpException
-     * @throws \Symfony\Component\HttpKernel\Exception\NotFoundHttpException
+     * @throws \Pagerfanta\Exception\OutOfRangeCurrentPageException
+     * @throws \Pagerfanta\Exception\NotIntegerCurrentPageException
+     * @throws \Pagerfanta\Exception\LessThan1CurrentPageException
      */
-    public function cgetAction()
+    public function cgetAction(Request $request)
     {
-        $questions = $this->get('app.challenge_repository')->getChallengesQB();
+        $challengesQB = $this->get('app.challenge_repository')->getChallengesQB();
 
-        return $this->response($questions, 200, ['challenge_simple', 'challenge_detailed']);
+        $result = $this->get('app.pagination_manager')
+            ->paginate($challengesQB, $request->query->get('sorting', ['createdAt' => 'desc']))
+            ->setCurrentPage($request->query->getInt('page', 1));
+
+        return $this->responseWithPaginator($result, 200, ['challenge_simple']);
     }
 
 

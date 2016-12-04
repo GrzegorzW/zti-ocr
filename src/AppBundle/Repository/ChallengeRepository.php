@@ -33,10 +33,6 @@ class ChallengeRepository extends BaseRepository
     }
 
     public function getChallengesQB() {
-
-        $qb = $this->createQueryBuilder('o')
-            ->addOrderBy('o.name', RepositoryInterface::ORDER_ASCENDING);
-
-        return $qb;
+        return $this->createQueryBuilder('o');
     }
 }
