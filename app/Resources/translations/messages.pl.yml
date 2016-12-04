@@ -90,3 +90,5 @@ answer:
         add_button: Dodaj rozwiązanie
         search.not.found: Nie znaleziono
         not.found: Brak rozwiązań
+    delete:
+        success: Pomyślnie usunięto rozwiązanie

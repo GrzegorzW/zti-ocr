@@ -44,7 +44,7 @@ class AnswerController extends Controller
     public function deleteAction(Answer $answer)
     {
         $this->get('app.challenge_repository')->remove($answer);
-        $this->addFlash('success', $this->get('translator')->trans('answer.remove.success'));
+        $this->addFlash('success', $this->get('translator')->trans('answer.delete.success'));
 
         return $this->redirectToRoute('admin_answer_index');
     }

@@ -57,13 +57,13 @@
                                     <td>{{ answer.deviceModel }}</td>
                                     <td>{{ answer.deviceOS }}</td>
                                     <td>{{ answer.deviceOSVersion }}</td>
-                                    <td>{{ answer.deviceTimeResult }}</td>
+                                    <td>{{ answer.timeResult }}</td>
                                     <td>
                                         {{ answer.createdAt|date }}
                                     </td>
                                     <td class="text-right">
-                                        <a href="{{ path('admin_answer_delete', {'id': challenge.id}) }}"
-                                           class="btn btn-xs btn-primary">
+                                        <a href="{{ path('admin_answer_delete', {'id': answer.id}) }}"
+                                           class="btn btn-xs btn-danger">
                                             <i class="fa fa-times"></i> {{ 'remove'|trans }}
                                         </a>
                                     </td>

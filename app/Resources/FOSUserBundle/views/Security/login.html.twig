@@ -1,0 +1,53 @@
+{#{% extends "FOSUserBundle::layout.html.twig" %}#}
+
+{#{% trans_default_domain 'FOSUserBundle' %}#}
+
+{#{% block pageContainer %}#}
+    {#{% if error %}#}
+        {#<div class="alert alert-warning">{{ error.messageKey|trans(error.messageData, 'security') }}</div>#}
+    {#{% endif %}#}
+    {#<form class="form-signin" action="{{ path("fos_user_security_check") }}" method="post" style="margin-bottom: 10px;">#}
+        {#<input type="hidden" name="_csrf_token" value="{{ csrf_token }}"/>#}
+
+        {#<label for="username" class="sr-only">Login</label>#}
+        {#<input type="text" id="username" class="form-control" style="margin-bottom: 10px !important;" name="_username"#}
+               {#placeholder="Login lub e-mail" value="{{ last_username }}" required autofocus>#}
+
+        {#<label for="password" class="sr-only">{{ 'security.login.password'|trans }}</label>#}
+        {#<input type="password" id="inputPassword" name="_password" class="form-control"#}
+               {#placeholder="{{ 'security.login.password'|trans }}" required>#}
+
+        {#<div class="checkbox">#}
+            {#<label for="remember_me">#}
+                {#<input type="checkbox" id="password" value="on">{{ 'security.login.remember_me'|trans }}#}
+            {#</label>#}
+        {#</div>#}
+
+        {#<button class="btn btn-lg btn-primary btn-block" type="submit" name="_submit"#}
+                {#value="{{ 'security.login.submit'|trans }}">{{ 'security.login.submit'|trans }}</button>#}
+    {#</form>#}
+
+    {#<a href="{{ path('fos_user_resetting_request') }}">Nie znasz hasła?</a>#}
+{#{% endblock pageContainer %}#}
+
+{% extends "FOSUserBundle::layout.html.twig" %}
+{% block title %}Logowanie{% endblock %}
+{% block content %}
+    {% if error %}
+        <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+    {% endif %}
+    <form action="{{ path('fos_user_security_check') }}" method="post" class="form-signin">
+        <input type="hidden" name="_csrf_token" value="{{ csrf_token }}"/>
+        <h2 class="form-signin-heading">{{ 'login.header'|trans }}</h2>
+        <input type="text" name="_username" id="inputEmail" class="form-control" placeholder="{{ 'login.login'|trans }}"
+               required autofocus>
+        <input type="password" name="_password" id="inputPassword" class="form-control"
+               placeholder="{{ 'login.password'|trans }}" required>
+        <div class="checkbox">
+            <label>
+                <input type="checkbox" value="remember-me"> {{ 'login.remember_me'|trans }}
+            </label>
+        </div>
+        <button class="btn btn-lg btn-primary btn-block" type="submit">{{ 'login.button'|trans }}</button>
+    </form>
+{% endblock %}
