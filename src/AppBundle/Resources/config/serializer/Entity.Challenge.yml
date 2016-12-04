@@ -1,4 +1,4 @@
-AppBundle\Entity\Question:
+AppBundle\Entity\Challenge:
     exclusion_policy: ALL
     properties:
         id:

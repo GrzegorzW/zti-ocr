@@ -8,6 +8,9 @@ edit: Edytuj
 yes: Tak
 no: Nie
 
+documentation:
+    api: Dokumentacja API
+
 login:
     title: Zaloguj się
     header: Zaloguj się

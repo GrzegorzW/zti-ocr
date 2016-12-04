@@ -11,7 +11,7 @@ class ChallengeController extends ApiController
      * @ApiDoc(
      *   section = "challenge",
      *   description = "List challenges",
-     *   views = {"user", "admin"},
+     *   views = {"default"},
      *   authentication = true,
      *   authenticationRoles = {"ROLE_USER"},
      *   resource = true,

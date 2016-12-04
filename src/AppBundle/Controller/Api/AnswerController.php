@@ -15,7 +15,7 @@ class AnswerController extends ApiController
      * @ApiDoc(
      *   section = "answer",
      *   description = "Post answer",
-     *   views = {"user", "admin"},
+     *   views = {"default"},
      *   authentication = true,
      *   authenticationRoles = {"ROLE_USER"},
      *   resource = true,

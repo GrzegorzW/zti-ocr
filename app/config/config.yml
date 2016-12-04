@@ -59,7 +59,7 @@ doctrine_migrations:
     name: Application Migrations
 
 nelmio_api_doc:
-    name: Quiz documentation.
+    name: Anyway.
     sandbox:
         authentication:
             delivery: http

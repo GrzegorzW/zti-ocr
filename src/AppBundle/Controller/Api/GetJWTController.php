@@ -9,11 +9,10 @@ use Symfony\Component\HttpFoundation\Response;
 class GetJWTController extends Controller
 {
     /**
-     * /**
      * @ApiDoc(
      *   section = "token",
      *   description = "Get token",
-     *   views = {"user", "admin"},
+     *   views = {"default"},
      *   authentication=false,
      *   resource = false,
      *   statusCodes = {
