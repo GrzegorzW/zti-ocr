@@ -5,10 +5,6 @@ front_admin:
     resource: "@AppBundle/Controller/Front/Admin"
     prefix:   /admin
 
-front_public:
-    resource: "@AppBundle/Controller/Front/Public"
-    prefix:   /
-
 api:
     resource: "@AppBundle/Controller/Api"
     prefix:   /api/v1/
