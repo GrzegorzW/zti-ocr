@@ -15,7 +15,8 @@
                     {{ form_row(form.correctAnswer) }}
                     {{ form_row(form.description) }}
                     {% if form.vars.data.image %}
-                        <img src="{{ form.vars.data.image.imagePath|imagine_filter('thumbnail') }}"/>
+                        <img src="{{ form.vars.data.image.imagePath|imagine_filter('thumbnail') }}"
+                             style="max-width: 100%"/>
                     {% endif %}
                     {{ form_row(form.image) }}
                     {{ form_end(form) }}
