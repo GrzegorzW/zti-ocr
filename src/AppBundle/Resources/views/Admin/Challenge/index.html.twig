@@ -41,7 +41,7 @@
                             <tbody>
                             {% if paginator|length == 0 %}
                                 <tr>
-                                    <td class="text-center" colspan="5">
+                                    <td class="text-center" colspan="6">
                                         {% if app.request.get('q') %}
                                             {{ 'challenge.list.search.not.found'|trans }}
                                         {% else %}
