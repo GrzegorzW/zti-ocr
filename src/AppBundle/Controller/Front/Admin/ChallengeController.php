@@ -47,15 +47,21 @@ class ChallengeController extends Controller
      */
     public function createAction(Request $request)
     {
-        $cha = new Challenge();
-        $form = $this->createForm(ChallengeType::class, $cha);
+        $challenge = new Challenge();
+        $form = $this->createForm(
+            ChallengeType::class,
+            $challenge,
+            [
+                'validation_groups' => [ChallengeType::VALIDATION_CREATE]
+            ]
+        );
         $form->add('save', SubmitType::class, [
             'label' => 'challenge.add.button',
             'attr' => ['class' => 'btn btn-primary']
         ]);
 
         if ($form->handleRequest($request)->isValid()) {
-            $this->get('app.challenge_repository')->save($cha);
+            $this->get('app.challenge_repository')->save($challenge);
             $this->addFlash('success', $this->get('translator')->trans('challenge.add.success'));
 
             return $this->redirectToRoute('admin_challenge_index');
@@ -81,7 +87,7 @@ class ChallengeController extends Controller
     public function deleteAction(Challenge $challenge)
     {
         $this->get('app.challenge_repository')->remove($challenge);
-        $this->addFlash('success', $this->get('translator')->trans('challenge.remove.success'));
+        $this->addFlash('success', $this->get('translator')->trans('challenge.delete.success'));
 
         return $this->redirectToRoute('admin_challenge_index');
     }

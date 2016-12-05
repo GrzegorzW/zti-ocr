@@ -61,11 +61,13 @@
                     </a>
                 </li>
                 <li class="{% if app.request.get('_route') in ['admin_challenge_index'] %}active {% endif %}">
-                    <a href="{{ path('admin_challenge_index') }}"><i class="fa fa-calculator"></i> {{ 'challenge.list.header'|trans }}
+                    <a href="{{ path('admin_challenge_index') }}"><i
+                                class="fa fa-lock"></i> {{ 'challenge.list.header'|trans }}
                     </a>
                 </li>
                 <li class="{% if app.request.get('_route') in ['admin_answer_index'] %}active {% endif %}">
-                    <a href="{{ path('admin_answer_index') }}"><i class="fa fa-calculator"></i> {{ 'answer.list.header'|trans }}
+                    <a href="{{ path('admin_answer_index') }}"><i
+                                class="fa fa-unlock"></i> {{ 'answer.list.header'|trans }}
                     </a>
                 </li>
             </ul>

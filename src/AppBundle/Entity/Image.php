@@ -2,9 +2,8 @@
 
 namespace AppBundle\Entity;
 
-use Symfony\Component\HttpFoundation\File\UploadedFile;
-
 use ModernFactory\ResourcesBundle\Resource\Model\ResourceInterface;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
 
 class Image implements ResourceInterface
 {
@@ -177,6 +176,9 @@ class Image implements ResourceInterface
     public function setImageFile(UploadedFile $imageFile = null)
     {
         $this->imageFile = $imageFile;
+        if ($imageFile instanceof UploadedFile) {
+            $this->updatedAt = new \DateTime('now');
+        }
     }
 
     /**

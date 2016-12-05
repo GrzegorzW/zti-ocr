@@ -78,38 +78,6 @@ class Answer implements ResourceInterface
     /**
      * @return string
      */
-    public function getContent()
-    {
-        return $this->content;
-    }
-
-    /**
-     * @param string $content
-     */
-    public function setContent($content)
-    {
-        $this->content = $content;
-    }
-
-    /**
-     * @return Challenge
-     */
-    public function getChallenge()
-    {
-        return $this->challenge;
-    }
-
-    /**
-     * @param Challenge $challenge
-     */
-    public function setChallenge(Challenge $challenge)
-    {
-        $this->challenge = $challenge;
-    }
-
-    /**
-     * @return string
-     */
     public function getDeviceBrand()
     {
         return $this->deviceBrand;
@@ -189,6 +157,38 @@ class Answer implements ResourceInterface
 
     public function isCorrect()
     {
-        return $this->getContent() === $this->getChallenge()->getCorrectAnswer();
+        return strtolower($this->getContent()) === strtolower($this->getChallenge()->getCorrectAnswer());
+    }
+
+    /**
+     * @return string
+     */
+    public function getContent()
+    {
+        return $this->content;
+    }
+
+    /**
+     * @param string $content
+     */
+    public function setContent($content)
+    {
+        $this->content = $content;
+    }
+
+    /**
+     * @return Challenge
+     */
+    public function getChallenge()
+    {
+        return $this->challenge;
+    }
+
+    /**
+     * @param Challenge $challenge
+     */
+    public function setChallenge(Challenge $challenge)
+    {
+        $this->challenge = $challenge;
     }
 }

@@ -11,6 +11,8 @@ use Symfony\Component\Validator\Constraints\NotBlank;
 
 class ChallengeType extends AbstractType
 {
+    const VALIDATION_CREATE = 'create';
+
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
@@ -37,8 +39,11 @@ class ChallengeType extends AbstractType
                 'description' => 'Image',
                 'label' => 'challenge.image',
                 'constraints' => [
-                    new NotBlank()
-                ]
+                    new NotBlank([
+                        'groups' => [ChallengeType::VALIDATION_CREATE]
+                    ])
+                ],
+                'required' => false
             ]);
     }
 
