@@ -65,11 +65,7 @@
                                         {{ challenge.description }}
                                     </td>
                                     <td>
-                                        {% if challenge.image %}
-                                            <img src="{{ challenge.image.imagePath|imagine_filter('list') }}"/>
-                                        {% else %}
-                                            -
-                                        {% endif %}
+                                        <img src="{{ challenge.image.imagePath|imagine_filter('list') }}"/>
                                     </td>
                                     <td>
                                         {{ challenge.createdAt|date }}

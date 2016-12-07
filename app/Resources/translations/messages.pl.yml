@@ -2,6 +2,7 @@ admin.main.name: OCR Benchmark
 dashboard: Dashboard
 logout: Wyloguj
 
+image: Zdjęcie
 actions: Akcje
 remove: Usuń
 edit: Edytuj

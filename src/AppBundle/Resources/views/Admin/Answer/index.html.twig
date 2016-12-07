@@ -35,6 +35,8 @@
                                 <th>{{ resources_bundle_sort('deviceOS', 'answer.deviceOS'|trans) }}</th>
                                 <th>{{ resources_bundle_sort('deviceOSVersion', 'answer.deviceOSVersion'|trans) }}</th>
                                 <th>{{ resources_bundle_sort('timeResult', 'answer.timeResult'|trans) }}</th>
+                                <th class="text-right">{{ 'image'|trans }}</th>
+                                <th>{{ resources_bundle_sort('createdAt', 'challenge.createdAt'|trans) }}</th>
                                 <th class="text-right">{{ 'actions'|trans }}</th>
                             </tr>
                             </thead>
@@ -58,6 +60,9 @@
                                     <td>{{ answer.deviceOS }}</td>
                                     <td>{{ answer.deviceOSVersion }}</td>
                                     <td>{{ answer.timeResult }}</td>
+                                    <td>
+                                        <img src="{{ answer.challenge.image.imagePath|imagine_filter('list') }}"/>
+                                    </td>
                                     <td>
                                         {{ answer.createdAt|date }}
                                     </td>
