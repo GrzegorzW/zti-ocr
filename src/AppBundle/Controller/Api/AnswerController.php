@@ -26,6 +26,9 @@ class AnswerController extends ApiController
      *     401 = "Authentication required",
      *     403 = "Unauthorized",
      *     404 = "Not found"
+     *   },
+     *   input= {
+     *      "class" = "AppBundle\Form\AnswerType"
      *   }
      * )
      *
