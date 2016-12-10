@@ -1,0 +1,15 @@
+AppBundle\Model\Result:
+    exclusion_policy: ALL
+    properties:
+        device:
+            groups: [result_simple]
+        min:
+            groups: [result_simple]
+        max:
+            groups: [result_simple]
+        average:
+            groups: [result_simple]
+        standardDeviation:
+            groups: [result_simple]
+        count:
+            groups: [result_simple]

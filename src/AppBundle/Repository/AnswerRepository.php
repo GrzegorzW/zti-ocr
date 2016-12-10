@@ -32,4 +32,25 @@ class AnswerRepository extends BaseRepository
 
         return $this->getPaginator($queryBuilder);
     }
+
+    public function getRawResults()
+    {
+        $conn = $this->getEntityManager()->getConnection();
+
+        $sql = '
+          SELECT 
+            device_brand, 
+            device_model, 
+            AVG(time_result) AS average, 
+            MIN(time_result) AS minimum, 
+            MAX(time_result) AS maximum, 
+            STD(time_result) as standard_deviation,
+            COUNT(*) as counter 
+          FROM answers 
+          GROUP BY device_brand, device_model;';
+        $stmt = $conn->prepare($sql);
+        $stmt->execute();
+
+        return $stmt->fetchAll();
+    }
 }

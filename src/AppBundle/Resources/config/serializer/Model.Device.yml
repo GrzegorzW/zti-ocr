@@ -1,0 +1,7 @@
+AppBundle\Model\Device:
+    exclusion_policy: ALL
+    properties:
+        deviceBrand:
+            groups: [result_simple]
+        deviceModel:
+            groups: [result_simple]

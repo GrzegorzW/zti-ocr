@@ -1,0 +1,5 @@
+AppBundle\Model\Results:
+    exclusion_policy: ALL
+    properties:
+        results:
+            groups: [result_simple]
