@@ -24,29 +24,20 @@ class ResultController extends ApiController
      *     401 = "Authentication required",
      *     403 = "Unauthorized"
      *   },
-     *   output= {
-     *       "class" = "AppBundle\Model\Results",
-     *       "groups"={"result_simple"}
+     *   output = {
+     *     "class" = "AppBundle\Model\Results",
+     *     "groups"={"result_simple"}
      *   }
      * )
      *
      * @Rest\Get("/results")
-     *
-     * @return \Symfony\Component\HttpFoundation\Response
-     * @throws \Doctrine\ORM\OptimisticLockException
-     * @throws \Doctrine\ORM\ORMInvalidArgumentException
-     * @throws \Symfony\Component\HttpKernel\Exception\HttpException
-     * @throws \InvalidArgumentException
-     * @throws \Symfony\Component\OptionsResolver\Exception\InvalidOptionsException
-     * @throws \Symfony\Component\HttpKernel\Exception\BadRequestHttpException
-     * @throws \Symfony\Component\HttpKernel\Exception\NotFoundHttpException
      */
     public function getAction()
     {
         $raw = $this->get('app.answer_repository')->getRawResults();
 
-        $result = $this->get('app.answer_manager')->transformResults($raw);
+        $results = $this->get('app.answer_manager')->transformResults($raw);
 
-        return $this->response($result, 200, ['result_simple']);
+        return $this->response($results, 200, ['result_simple']);
     }
 }
