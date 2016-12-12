@@ -10,7 +10,7 @@ services:
     app.answer_manager:
             class: AppBundle\Service\AnswerManager
             arguments:
-              - "@app.answer_repository"
+              - "@app.challenge_repository"
 
     app.answer_repository:
         class: AppBundle\Repository\AnswerRepository

@@ -23,7 +23,7 @@ class ChallengeController extends ApiController
      *   },
      *   output= {
      *       "class" = "AppBundle\Entity\Challenge",
-     *       "groups"={"challenge_simple", "challenge_detailed"},
+     *       "groups"={"challenge_simple"},
      *       "collection" = true
      *   }
      * )
@@ -46,6 +46,4 @@ class ChallengeController extends ApiController
 
         return $this->responseWithPaginator($result, 200, ['challenge_simple']);
     }
-
-
 }

@@ -1,0 +1,7 @@
+AppBundle\Model\DeviceResult:
+    exclusion_policy: ALL
+    properties:
+        device:
+            groups: [result_simple]
+        result:
+            groups: [result_simple]

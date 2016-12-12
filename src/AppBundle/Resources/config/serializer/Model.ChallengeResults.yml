@@ -1,0 +1,7 @@
+AppBundle\Model\ChallengeResults:
+    exclusion_policy: ALL
+    properties:
+        challenge:
+            groups: [challenge_simple]
+        devicesResults:
+            groups: [result_simple]

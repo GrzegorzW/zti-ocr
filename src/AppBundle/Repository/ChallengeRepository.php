@@ -2,7 +2,8 @@
 
 namespace AppBundle\Repository;
 
-use ModernFactory\ResourcesBundle\Resource\Repository\RepositoryInterface;
+use AppBundle\Entity\Challenge;
+use Doctrine\ORM\EntityNotFoundException;
 
 class ChallengeRepository extends BaseRepository
 {
@@ -32,7 +33,25 @@ class ChallengeRepository extends BaseRepository
         return $this->getPaginator($queryBuilder);
     }
 
-    public function getChallengesQB() {
+    public function getChallengesQB()
+    {
         return $this->createQueryBuilder('o');
+    }
+
+
+    /**
+     * @param $id
+     * @return Challenge
+     * @throws \Doctrine\ORM\EntityNotFoundException
+     */
+    public function getChallenge($id)
+    {
+        $challenge = $this->find($id);
+
+        if (!$challenge instanceof Challenge) {
+            throw new EntityNotFoundException();
+        }
+
+        return $challenge;
     }
 }

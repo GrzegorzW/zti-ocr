@@ -39,6 +39,7 @@ class AnswerRepository extends BaseRepository
 
         $sql = '
           SELECT 
+            challenge_id,
             device_brand, 
             device_model, 
             AVG(time_result) AS average, 
@@ -47,7 +48,7 @@ class AnswerRepository extends BaseRepository
             STD(time_result) as standard_deviation,
             COUNT(*) as counter 
           FROM answers 
-          GROUP BY device_brand, device_model;';
+          GROUP BY challenge_id, device_brand, device_model;';
         $stmt = $conn->prepare($sql);
         $stmt->execute();
 

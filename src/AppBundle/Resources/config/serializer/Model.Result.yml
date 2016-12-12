@@ -3,6 +3,8 @@ AppBundle\Model\Result:
     properties:
         device:
             groups: [result_simple]
+        challenge:
+            groups: [result_simple]
         min:
             groups: [result_simple]
         max:

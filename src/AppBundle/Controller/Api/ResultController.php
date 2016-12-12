@@ -2,12 +2,8 @@
 
 namespace AppBundle\Controller\Api;
 
-use AppBundle\Entity\Answer;
-use AppBundle\Form\AnswerType;
 use FOS\RestBundle\Controller\Annotations as Rest;
 use Nelmio\ApiDocBundle\Annotation\ApiDoc;
-use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpKernel\Exception\HttpException;
 
 class ResultController extends ApiController
 {
@@ -25,19 +21,20 @@ class ResultController extends ApiController
      *     403 = "Unauthorized"
      *   },
      *   output = {
-     *     "class" = "AppBundle\Model\Results",
-     *     "groups"={"result_simple"}
+     *     "class" = "AppBundle\Model\ChallengesResults",
+     *     "groups"={"result_simple", "challenge_simple"}
      *   }
      * )
      *
      * @Rest\Get("/results")
+     * @throws \Doctrine\ORM\EntityNotFoundException
      */
     public function getAction()
     {
         $raw = $this->get('app.answer_repository')->getRawResults();
 
-        $results = $this->get('app.answer_manager')->transformResults($raw);
+        $results = $this->get('app.answer_manager')->transformRaw($raw);
 
-        return $this->response($results, 200, ['result_simple']);
+        return $this->response($results, 200, ['result_simple', 'challenge_simple']);
     }
 }
