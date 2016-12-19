@@ -8,7 +8,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 class ResultController extends Controller
 {
     /**
-     * @Route("/results", name="public_result_index")
+     * @Route("/", name="public_result_index")
      *
      * @return \Symfony\Component\HttpFoundation\Response
      * @throws \Doctrine\ORM\EntityNotFoundException
