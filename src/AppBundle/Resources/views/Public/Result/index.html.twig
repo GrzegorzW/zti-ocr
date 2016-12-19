@@ -58,6 +58,9 @@
                 <li>
                     <a class="page-scroll" href="#contact">Autorzy</a>
                 </li>
+                <li>
+                    <a class="page-scroll" href="{{ path('fos_user_security_login') }}">login</a>
+                </li>
             </ul>
         </div>
     </div>
@@ -202,7 +205,7 @@
                 vAxis: {
                     title: 'Model urządzenia'
                 },
-                animation:{
+                animation: {
                     duration: 3000,
                     easing: 'out',
                     startup: true
