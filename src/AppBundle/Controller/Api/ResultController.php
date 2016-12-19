@@ -12,8 +12,7 @@ class ResultController extends ApiController
      *   section = "result",
      *   description = "Get results",
      *   views = {"default"},
-     *   authentication = true,
-     *   authenticationRoles = {"ROLE_USER"},
+     *   authentication = false,
      *   resource = true,
      *   statusCodes = {
      *     200 = "Success",

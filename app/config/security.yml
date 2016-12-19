@@ -14,11 +14,11 @@ security:
             pattern: ^/(_(profiler|wdt)|css|images|js)/
             security: false
 
-        public_api:
-            pattern:    ^/api/v1/public
+        results:
+            pattern:    ^/api/v1/results
             security:   false
             anonymous:  true
-            methods:    ['POST']
+            methods:    ['GET']
 
         refresh:
             pattern:  ^/api/token/refresh$

@@ -93,3 +93,7 @@ answer:
         not.found: Brak rozwiązań
     delete:
         success: Pomyślnie usunięto rozwiązanie
+
+result:
+    list:
+        header: Lista wyników
