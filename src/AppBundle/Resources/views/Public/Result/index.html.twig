@@ -59,7 +59,9 @@
                     <a class="page-scroll" href="#contact">Autorzy</a>
                 </li>
                 <li>
-                    <a class="page-scroll" href="{{ path('fos_user_security_login') }}">login</a>
+                    <a href="{{ path('fos_user_security_login') }}" target="_blank">
+                        login
+                    </a>
                 </li>
             </ul>
         </div>
@@ -102,11 +104,7 @@
         </div>
     </div>
     <div class="container">
-        <div class="row">
-            <div>
-                <div id="charts"></div>
-            </div>
-        </div>
+        <div id="charts" class="row"></div>
     </div>
 </section>
 
@@ -155,7 +153,6 @@
 
     var charts = {
         chartsParentDivId: "charts",
-        chartsClass: "chart",
         resultsUrl: "http://ocr.waszkowiak.pl/api/v1/results",
         init: function () {
             google.charts.load('current', {'packages': ['corechart']});
@@ -177,7 +174,8 @@
         },
         drawChart: function (result) {
             var divId = result.challenge.id;
-            charts.createDiv(divId, charts.chartsParentDivId);
+            charts.appendChartDiv(divId, charts.chartsParentDivId);
+            charts.appendChallengeDiv(result.challenge, charts.chartsParentDivId);
 
             var data = new google.visualization.DataTable();
 
@@ -215,13 +213,25 @@
             var chart = new google.visualization.BarChart(document.getElementById(divId));
             chart.draw(data, options);
         },
-        createDiv: function (newId, parentId) {
+        appendChartDiv: function (newId, parentId) {
             var parent = document.getElementById(parentId);
             var child = document.createElement('div');
             child.id = newId;
-            child.setAttribute('class', charts.chartsClass);
+            child.className = 'col-md-8 chart';
 
             parent.appendChild(child);
+        },
+        appendChallengeDiv: function (challenge, parentId) {
+            var parent = document.getElementById(parentId);
+
+            var div = document.createElement('div');
+            div.className = 'col-md-4 challenge-image-wrapper';
+            parent.appendChild(div);
+
+            var img = document.createElement('img');
+            img.setAttribute('src', challenge.image.url);
+            img.className = 'challenge-image';
+            div.appendChild(img);
         }
     };
 

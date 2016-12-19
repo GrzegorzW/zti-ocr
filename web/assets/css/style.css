@@ -1,4 +1,11 @@
 .chart {
-    width: 100%;
     min-height: 450px;
+}
+
+.challenge-image-wrapper {
+    min-height: 450px;
+}
+
+.challenge-image {
+    width: 100%;
 }
