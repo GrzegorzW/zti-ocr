@@ -215,7 +215,8 @@
             console.log(data);
 
 
-            var chart = new google.visualization.ColumnChart(document.getElementById(divId));
+//            var chart = new google.visualization.ColumnChart(document.getElementById(divId));
+            var chart = new google.visualization.BarChart(document.getElementById(divId));
             chart.draw(data, options);
         },
         appendChartDiv: function (newId, parentId) {
