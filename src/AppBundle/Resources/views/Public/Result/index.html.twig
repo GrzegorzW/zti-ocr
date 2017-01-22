@@ -191,6 +191,7 @@
             data.addColumn('number', 'Średni czas [s]');
             data.addRows(rows);
 
+
             var options = {
                 title: result.challenge.name,
                 titleTextStyle: {
@@ -209,6 +210,10 @@
                     startup: true
                 }
             };
+
+            console.log(rows);
+            console.log(data);
+
 
             var chart = new google.visualization.ColumnChart(document.getElementById(divId));
             chart.draw(data, options);
