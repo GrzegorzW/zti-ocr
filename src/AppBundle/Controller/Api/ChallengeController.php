@@ -4,7 +4,11 @@ namespace AppBundle\Controller\Api;
 
 use FOS\RestBundle\Controller\Annotations as Rest;
 use Nelmio\ApiDocBundle\Annotation\ApiDoc;
+use Pagerfanta\Exception\LessThan1CurrentPageException;
+use Pagerfanta\Exception\NotIntegerCurrentPageException;
+use Pagerfanta\Exception\OutOfRangeCurrentPageException;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 
 class ChallengeController extends ApiController
 {
@@ -31,12 +35,13 @@ class ChallengeController extends ApiController
      * @Rest\Get("/challenges")
      *
      * @param Request $request
-     * @return \Symfony\Component\HttpFoundation\Response
-     * @throws \Pagerfanta\Exception\OutOfRangeCurrentPageException
-     * @throws \Pagerfanta\Exception\NotIntegerCurrentPageException
-     * @throws \Pagerfanta\Exception\LessThan1CurrentPageException
+     *
+     * @return Response
+     * @throws OutOfRangeCurrentPageException
+     * @throws NotIntegerCurrentPageException
+     * @throws LessThan1CurrentPageException
      */
-    public function cgetAction(Request $request)
+    public function cgetAction(Request $request): Response
     {
         $challengesQB = $this->get('app.challenge_repository')->getChallengesQB();
 

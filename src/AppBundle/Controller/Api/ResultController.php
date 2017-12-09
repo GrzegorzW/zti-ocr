@@ -4,6 +4,7 @@ namespace AppBundle\Controller\Api;
 
 use FOS\RestBundle\Controller\Annotations as Rest;
 use Nelmio\ApiDocBundle\Annotation\ApiDoc;
+use Symfony\Component\HttpFoundation\Response;
 
 class ResultController extends ApiController
 {
@@ -26,9 +27,10 @@ class ResultController extends ApiController
      * )
      *
      * @Rest\Get("/results")
-     * @throws \Doctrine\ORM\EntityNotFoundException
+     *
+     * @return Response
      */
-    public function getAction()
+    public function getAction(): Response
     {
         $raw = $this->get('app.answer_repository')->getRawResults();
 

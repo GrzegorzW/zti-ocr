@@ -4,10 +4,20 @@ namespace AppBundle\Controller\Front\Admin;
 
 use AppBundle\Entity\Challenge;
 use AppBundle\Form\ChallengeType;
+use Doctrine\ORM\OptimisticLockException;
+use Doctrine\ORM\ORMInvalidArgumentException;
+use Pagerfanta\Exception\LessThan1CurrentPageException;
+use Pagerfanta\Exception\NotIntegerCurrentPageException;
+use Pagerfanta\Exception\OutOfRangeCurrentPageException;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\Form\Exception\AlreadySubmittedException;
+use Symfony\Component\Form\Exception\LogicException;
+use Symfony\Component\Form\Exception\UnexpectedTypeException;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 
 class ChallengeController extends Controller
 {
@@ -15,10 +25,12 @@ class ChallengeController extends Controller
      * @Route("/challenges", name="admin_challenge_index")
      *
      * @param Request $request
-     * @return \Symfony\Component\HttpFoundation\Response
-     * @throws \Pagerfanta\Exception\OutOfRangeCurrentPageException
-     * @throws \Pagerfanta\Exception\NotIntegerCurrentPageException
-     * @throws \Pagerfanta\Exception\LessThan1CurrentPageException
+     *
+     * @return Response
+     *
+     * @throws OutOfRangeCurrentPageException
+     * @throws NotIntegerCurrentPageException
+     * @throws LessThan1CurrentPageException
      */
     public function indexAction(Request $request)
     {
@@ -38,12 +50,14 @@ class ChallengeController extends Controller
      * @Route("/challenges/add", name="admin_challenge_add")
      *
      * @param Request $request
-     * @return array
-     * @throws \Doctrine\ORM\OptimisticLockException
-     * @throws \Doctrine\ORM\ORMInvalidArgumentException
-     * @throws \Symfony\Component\Form\Exception\AlreadySubmittedException
-     * @throws \Symfony\Component\Form\Exception\UnexpectedTypeException
-     * @throws \Symfony\Component\Form\Exception\LogicException
+     *
+     * @return Response
+     *
+     * @throws OptimisticLockException
+     * @throws ORMInvalidArgumentException
+     * @throws AlreadySubmittedException
+     * @throws UnexpectedTypeException
+     * @throws LogicException
      */
     public function createAction(Request $request)
     {
@@ -79,10 +93,11 @@ class ChallengeController extends Controller
      * @Route("/challenges/{id}/delete", name="admin_challenge_delete")
      *
      * @param Challenge $challenge
-     * @return \Symfony\Component\HttpFoundation\RedirectResponse
-     * @throws \Doctrine\ORM\ORMInvalidArgumentException
+     *
+     * @return RedirectResponse
+     * @throws ORMInvalidArgumentException
      * @throws \LogicException
-     * @throws \Doctrine\ORM\OptimisticLockException
+     * @throws OptimisticLockException
      */
     public function deleteAction(Challenge $challenge)
     {
@@ -97,12 +112,14 @@ class ChallengeController extends Controller
      *
      * @param Request $request
      * @param Challenge $challenge
-     * @return array
-     * @throws \Doctrine\ORM\OptimisticLockException
-     * @throws \Doctrine\ORM\ORMInvalidArgumentException
-     * @throws \Symfony\Component\Form\Exception\AlreadySubmittedException
-     * @throws \Symfony\Component\Form\Exception\UnexpectedTypeException
-     * @throws \Symfony\Component\Form\Exception\LogicException
+     *
+     * @return Response
+     *
+     * @throws OptimisticLockException
+     * @throws ORMInvalidArgumentException
+     * @throws AlreadySubmittedException
+     * @throws UnexpectedTypeException
+     * @throws LogicException
      */
     public function editAction(Request $request, Challenge $challenge)
     {

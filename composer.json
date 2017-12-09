@@ -46,13 +46,13 @@
         "jms/serializer-bundle": "^1.1",
         "egulias/email-validator": "~1.2",
         "roave/security-advisories": "dev-master",
-        "liip/imagine-bundle": "^1.5"
+        "liip/imagine-bundle": "^1.5",
+        "fzaninotto/faker": "^1.7"
     },
     "require-dev": {
         "sensio/generator-bundle": "^3.0",
         "symfony/phpunit-bridge": "^3.0",
         "phpunit/phpunit": "5.*",
-        "fzaninotto/faker": "^1.5",
         "liip/functional-test-bundle": "^1.6",
         "doctrine/doctrine-fixtures-bundle": "^2.3",
         "hautelook/alice-bundle": "^1.3",

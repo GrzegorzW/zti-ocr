@@ -4,10 +4,17 @@ namespace AppBundle\Controller\Api;
 
 use AppBundle\Entity\Answer;
 use AppBundle\Form\AnswerType;
+use Doctrine\ORM\OptimisticLockException;
+use Doctrine\ORM\ORMInvalidArgumentException;
 use FOS\RestBundle\Controller\Annotations as Rest;
+use InvalidArgumentException;
 use Nelmio\ApiDocBundle\Annotation\ApiDoc;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpKernel\Exception\BadRequestHttpException;
 use Symfony\Component\HttpKernel\Exception\HttpException;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
+use Symfony\Component\OptionsResolver\Exception\InvalidOptionsException;
 
 class AnswerController extends ApiController
 {
@@ -35,16 +42,18 @@ class AnswerController extends ApiController
      * @Rest\Post("/answers")
      *
      * @param Request $request
-     * @return \Symfony\Component\HttpFoundation\Response
-     * @throws \Doctrine\ORM\OptimisticLockException
-     * @throws \Doctrine\ORM\ORMInvalidArgumentException
-     * @throws \Symfony\Component\HttpKernel\Exception\HttpException
-     * @throws \InvalidArgumentException
-     * @throws \Symfony\Component\OptionsResolver\Exception\InvalidOptionsException
-     * @throws \Symfony\Component\HttpKernel\Exception\BadRequestHttpException
-     * @throws \Symfony\Component\HttpKernel\Exception\NotFoundHttpException
+     *
+     * @return Response
+     *
+     * @throws OptimisticLockException
+     * @throws ORMInvalidArgumentException
+     * @throws HttpException
+     * @throws InvalidArgumentException
+     * @throws InvalidOptionsException
+     * @throws BadRequestHttpException
+     * @throws NotFoundHttpException
      */
-    public function postAction(Request $request)
+    public function postAction(Request $request): Response
     {
         $answer = new Answer();
         $form = $this->get('form.factory')->createNamed('', AnswerType::class, $answer);

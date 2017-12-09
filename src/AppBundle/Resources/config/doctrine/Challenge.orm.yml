@@ -24,10 +24,10 @@ AppBundle\Entity\Challenge:
             type: string
             nullable: false
         correctAnswer:
-            type: string
+            type: text
             nullable: false
         description:
-            type: string
+            type: text
             nullable: true
     oneToOne:
         image:
