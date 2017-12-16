@@ -47,7 +47,9 @@
         "egulias/email-validator": "~1.2",
         "roave/security-advisories": "dev-master",
         "liip/imagine-bundle": "^1.5",
-        "fzaninotto/faker": "^1.7"
+        "fzaninotto/faker": "^1.7",
+        "ramsey/uuid": "^3.7",
+        "ramsey/uuid-doctrine": "^1.4"
     },
     "require-dev": {
         "sensio/generator-bundle": "^3.0",

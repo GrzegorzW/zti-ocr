@@ -59,20 +59,20 @@ class ImageSubscriber implements EventSubscriber
     {
         /** @var Filesystem $filesystem */
         list($filesystem, $adapterName) = $this->filesystemManager->getFilesystem();
-        $filename = hash('sha512', uniqid(mt_rand(), true));
-        while ($filesystem->has($entity->getUploadDir() . '/' . $filename . '.' . $entity->getImageFile()->guessExtension())) {
-            $filename = hash('sha512', uniqid(mt_rand(), true));
-        }
+//        $filename = hash('sha512', uniqid(mt_rand(), true));
+//        while ($filesystem->has($entity->getUploadDir() . '/' . $filename . '.' . $entity->getImageFile()->guessExtension())) {
+//            $filename = hash('sha512', uniqid(mt_rand(), true));
+//        }
 
         $entity->setFilesystem($adapterName);
         $entity->setOriginalName($entity->getImageFile()->getClientOriginalName());
-        $entity->setImageName($filename . '.' . $entity->getImageFile()->guessExtension());
+        $entity->setImageName($entity->getImageFile()->getClientOriginalName());
         $entity->setSize($entity->getImageFile()->getSize());
         $entity->setMimeType($entity->getImageFile()->getMimeType());
 
-        $stream = fopen($entity->getImageFile()->getRealPath(), 'rb+');
-        $filesystem->writeStream($entity->getAbsoluteImagePath(), $stream);
-        fclose($stream);
+//        $stream = fopen($entity->getImageFile()->getRealPath(), 'rb+');
+//        $filesystem->writeStream($entity->getAbsoluteImagePath(), $stream);
+//        fclose($stream);
 
         $entity->setImageFile(null);
     }

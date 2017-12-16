@@ -25,8 +25,8 @@ class AnswerType extends AbstractType
                 ]
             ])
             ->add('challenge', EntityType::class, [
-                'description' => 'Calculator',
-                'label' => 'calculation.calculator',
+                'description' => 'Challenge',
+                'label' => 'challenge',
                 'class' => Challenge::class,
                 'choice_label' => 'name',
                 'expanded' => false,

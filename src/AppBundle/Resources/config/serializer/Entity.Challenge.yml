@@ -3,6 +3,7 @@ AppBundle\Entity\Challenge:
     properties:
         id:
             groups: [challenge_simple, answer_detailed, image_detailed]
+            type: string
         createdAt:
             groups: [challenge_admin]
         updatedAt:

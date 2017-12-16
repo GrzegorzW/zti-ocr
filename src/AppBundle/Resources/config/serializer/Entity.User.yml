@@ -4,6 +4,7 @@ AppBundle\Entity\User:
         shortId:
             groups: [user_simple]
             serialized_name: id
+            type: string
         createdAt:
             groups: [user_detailed]
         updatedAt:

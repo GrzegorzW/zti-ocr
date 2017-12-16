@@ -107,7 +107,6 @@ class Challenge implements ResourceInterface
     public function setImage(Image $image)
     {
         $this->image = $image;
-        $this->image->setChallenge($this);
     }
 
     /**

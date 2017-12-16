@@ -4,6 +4,7 @@ AppBundle\Entity\Image:
         shortId:
             groups: [image_simple, challenge_simple]
             serialized_name: id
+            type: string
         originalName:
             groups: [image_admin]
         imageName:
