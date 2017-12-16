@@ -5,14 +5,12 @@ RUN apt-get update && apt-get -y --no-install-recommends install \
         unzip \
         wget \
         vim \
-    && pecl install xdebug-2.5.4 \
+        libpng-dev \
     && docker-php-ext-install \
         pdo \
         pdo_mysql \
-    && docker-php-ext-enable \
-        xdebug \
-        pdo \
-        pdo_mysql \
+        gd \
+        exif \
     && curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer \
     && apt-get clean; rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* /usr/share/doc/*
 
