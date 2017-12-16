@@ -3,7 +3,10 @@
 namespace AppBundle\Repository;
 
 use AppBundle\Entity\Challenge;
+use AppBundle\Entity\Image;
 use Doctrine\ORM\EntityNotFoundException;
+use Faker\Factory;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
 
 class ChallengeRepository extends BaseRepository
 {
@@ -41,6 +44,7 @@ class ChallengeRepository extends BaseRepository
 
     /**
      * @param $id
+     *
      * @return Challenge
      * @throws \Doctrine\ORM\EntityNotFoundException
      */
@@ -53,5 +57,49 @@ class ChallengeRepository extends BaseRepository
         }
 
         return $challenge;
+    }
+
+    public function bulkRandomInsert(int $size)
+    {
+        $faker = Factory::create();
+
+        for ($i = 0; $i <= $size; $i++) {
+            $rand = random_int(1, 3);
+
+            $image = new Image();
+            $image->setImageFile(
+                new UploadedFile(
+                    __DIR__ . '/../../../web/uploads/drive0/text' . $rand . '.png',
+                    'text' . $rand . '.png',
+                    'image/png'
+                )
+            );
+
+            $challenge = new Challenge();
+            $challenge->setName($faker->name);
+            $challenge->setCorrectAnswer($faker->paragraph);
+            $challenge->setDescription($faker->paragraph);
+            $challenge->setImage($image);
+
+            $this->persist($challenge);
+
+            if ($i % $size === 0) {
+                echo $i . PHP_EOL;
+                $this->flush();
+                $this->clear();
+            }
+        }
+
+        $this->flush();
+        $this->clear();
+    }
+
+    public function getRandom(): Challenge
+    {
+        $connection = $this->_em->getConnection();
+
+        $randomId = $connection->fetchColumn('SELECT id, RAND() AS rand FROM challenges ORDER BY rand LIMIT 1');
+
+        return $this->find($randomId);
     }
 }

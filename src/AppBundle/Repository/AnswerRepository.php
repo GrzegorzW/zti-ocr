@@ -2,6 +2,10 @@
 
 namespace AppBundle\Repository;
 
+use AppBundle\Entity\Answer;
+use AppBundle\Entity\Challenge;
+use Faker\Factory;
+
 class AnswerRepository extends BaseRepository
 {
     /**
@@ -53,5 +57,47 @@ class AnswerRepository extends BaseRepository
         $stmt->execute();
 
         return $stmt->fetchAll();
+    }
+
+    public function bulkRandomInsert(Challenge $challenge, int $size)
+    {
+        $faker = Factory::create();
+
+        for ($i = 0; $i <= $size; $i++) {
+            $devices = [
+                [
+                    'deviceBrand' => 'Apple',
+                    'deviceModel' => 'iPhone 6',
+                    'deviceOs' => 'OSX',
+                    'deviceOsVersion' => '11'
+                ], [
+                    'deviceBrand' => 'Samsung',
+                    'deviceModel' => 'Galaxy S8',
+                    'deviceOs' => 'Android',
+                    'deviceOsVersion' => '6'
+                ]
+            ];
+            $device = $devices[array_rand($devices)];
+
+            $answer = new Answer();
+
+            $answer->setDeviceBrand($device['deviceBrand']);
+            $answer->setDeviceModel($device['deviceModel']);
+            $answer->setDeviceOS($device['deviceOs']);
+            $answer->setDeviceOSVersion($device['deviceOsVersion']);
+
+            $answer->setContent($faker->text());
+            $answer->setChallenge($challenge);
+            $answer->setTimeResult($faker->randomFloat(5, 3, 15));
+
+            $this->persist($answer);
+
+
+            if ($i % $size === 0) {
+                echo $i . PHP_EOL;
+                $this->flush();
+                $this->clear();
+            }
+        }
     }
 }

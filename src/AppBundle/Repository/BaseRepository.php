@@ -25,6 +25,24 @@ abstract class BaseRepository extends EntityRepository
     /**
      * @param ResourceInterface $resource
      * @throws \Doctrine\ORM\ORMInvalidArgumentException
+     */
+    public function persist(ResourceInterface $resource)
+    {
+        $this->getEntityManager()->persist($resource);
+    }
+
+    /**
+     * @throws \Doctrine\ORM\ORMInvalidArgumentException
+     * @throws \Doctrine\ORM\OptimisticLockException
+     */
+    public function flush()
+    {
+        $this->getEntityManager()->flush();
+    }
+
+    /**
+     * @param ResourceInterface $resource
+     * @throws \Doctrine\ORM\ORMInvalidArgumentException
      * @throws \Doctrine\ORM\OptimisticLockException
      */
     public function remove(ResourceInterface $resource)
