@@ -153,7 +153,7 @@
 
     var charts = {
         chartsParentDivId: "charts",
-        resultsUrl: "http://ocr.waszkowiak.pl/api/v1/results",
+        resultsUrl: "http://" + window.location.host + "/api/v1/results",
         init: function () {
             google.charts.load('current', {'packages': ['corechart']});
             google.charts.setOnLoadCallback(charts.drawCharts);
