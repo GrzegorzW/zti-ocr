@@ -37,18 +37,32 @@ class ChallengeController extends ApiController
      * @param Request $request
      *
      * @return Response
+     * @throws \InvalidArgumentException
      * @throws OutOfRangeCurrentPageException
      * @throws NotIntegerCurrentPageException
      * @throws LessThan1CurrentPageException
      */
     public function cgetAction(Request $request): Response
     {
+        $key = $request->getRequestUri();
+        $redis = $this->get('app.redis_client');
+
+        $cached = $redis->get($key);
+
+        if ($cached) {
+            return new Response($cached, 200);
+        }
+
         $challengesQB = $this->get('app.challenge_repository')->getChallengesQB();
 
         $result = $this->get('app.pagination_manager')
             ->paginate($challengesQB, $request->query->get('sorting', ['createdAt' => 'desc']))
             ->setCurrentPage($request->query->getInt('page', 1));
 
-        return $this->responseWithPaginator($result, 200, ['challenge_simple']);
+        $response = $this->responseWithPaginator($result, 200, ['challenge_simple']);
+
+        $redis->set($key, $response->getContent(), 300);
+
+        return $response;
     }
 }

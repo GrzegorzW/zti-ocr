@@ -44,3 +44,8 @@ services:
         arguments: ['@security.token_storage']
         tags:
             - { name: form.type }
+
+    app.redis_client:
+        class: AppBundle\Service\RedisClient
+        arguments:
+            - 'redis'

@@ -11,6 +11,11 @@ AppBundle\Entity\Answer:
             customIdGenerator:
                 class: Ramsey\Uuid\Doctrine\UuidGenerator
 
+
+    uniqueConstraints:
+        search_idx:
+            columns: [ id ]
+
     fields:
         createdAt:
             type: datetime
