@@ -6,11 +6,13 @@ RUN apt-get update && apt-get -y --no-install-recommends install \
         wget \
         vim \
         libpng-dev \
+    && docker-php-ext-configure opcache --enable-opcache \
     && docker-php-ext-install \
         pdo \
         pdo_mysql \
         gd \
         exif \
+        opcache \
     && pecl install -o -f redis \
     && rm -rf /tmp/pear \
     && docker-php-ext-enable redis \

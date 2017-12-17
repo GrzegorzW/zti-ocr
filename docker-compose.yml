@@ -6,6 +6,7 @@ services:
         volumes:
             - .:/ocr
             - ./docker/php-fpm/php-ini-overrides.ini:/usr/local/etc/php/conf.d/php-ini-overrides.ini
+            - ./docker/php-fpm/opcache.ini:/usr/local/etc/php/conf.d/opcache.ini
             - ./docker/php-fpm/agent.ini:/etc/blackfire/agent
             - ./docker/php-fpm/blackfire.ini:/root/.blackfire.ini
 
