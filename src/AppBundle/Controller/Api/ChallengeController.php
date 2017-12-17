@@ -50,7 +50,10 @@ class ChallengeController extends ApiController
         $cached = $redis->get($key);
 
         if ($cached) {
-            return new Response($cached, 200);
+            $response = new Response($cached, 200);
+            $response->setTtl(300);
+
+            return $response;
         }
 
         $challengesQB = $this->get('app.challenge_repository')->getChallengesQB();
@@ -63,6 +66,6 @@ class ChallengeController extends ApiController
 
         $redis->set($key, $response->getContent(), 300);
 
-        return $response;
+        return $response->setTtl(300);
     }
 }
