@@ -38,7 +38,6 @@ class ChallengeRepository extends BaseRepository
         return $this->createQueryBuilder('o');
     }
 
-
     /**
      * @param $id
      * @return Challenge
