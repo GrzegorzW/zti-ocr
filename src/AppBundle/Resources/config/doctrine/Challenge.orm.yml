@@ -36,6 +36,7 @@ AppBundle\Entity\Challenge:
             targetEntity: AppBundle\Entity\Image
             cascade: ["persist", "remove"]
             inversedBy: challenge
+            fetch: EAGER
             joinColumn:
                 name: image_id
                 referencedColumnName: id
