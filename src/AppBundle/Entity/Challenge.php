@@ -4,10 +4,11 @@ namespace AppBundle\Entity;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use ModernFactory\ResourcesBundle\Resource\Model\ResourceInterface;
+use Ramsey\Uuid\UuidInterface;
 
 class Challenge implements ResourceInterface
 {
-    /** @var integer */
+    /** @var UuidInterface */
     protected $id;
     /** @var \DateTime */
     protected $createdAt;
@@ -30,7 +31,7 @@ class Challenge implements ResourceInterface
     }
 
     /**
-     * @return int
+     * @return UuidInterface
      */
     public function getId()
     {

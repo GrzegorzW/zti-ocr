@@ -13,20 +13,8 @@ class ChallengesResults
         $this->challengesResults = new ArrayCollection;
     }
 
-    public function addChallengeResult(ChallengeResults $challengeResults, Device $device, Result $result)
+    public function addChallengeResult(ChallengeResults $challengeResults): void
     {
-        $deviceResult = new DeviceResult($device, $result);
-
-        /** @var ChallengeResults $savedChallenge */
-        foreach ($this->challengesResults as $savedChallenge) {
-            if ($savedChallenge->getChallenge()->getId() === $challengeResults->getChallenge()->getId()) {
-                $savedChallenge->addDeviceResult($deviceResult);
-
-                return;
-            }
-        }
-
-        $challengeResults->addDeviceResult($deviceResult);
         $this->challengesResults->add($challengeResults);
     }
 }
