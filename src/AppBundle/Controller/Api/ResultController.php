@@ -29,13 +29,30 @@ class ResultController extends ApiController
      * @Rest\Get("/results")
      *
      * @return Response
+     *
+     * @throws \InvalidArgumentException
      */
     public function getAction(): Response
     {
-        $raw = $this->get('app.answer_repository')->getRawResults();
+        $redis = $this->get('app.redis_client');
 
+        $cacheKey = '/api/v1/results';
+        $cached = $redis->get($cacheKey);
+
+        if ($cached) {
+            $response = new Response($cached, 200);
+            $response->setTtl(300);
+
+            return $response;
+        }
+
+        $raw = $this->get('app.answer_repository')->getRawResults();
         $results = $this->get('app.answer_manager')->transformRaw($raw);
 
-        return $this->response($results, 200, ['result_simple', 'challenge_simple']);
+        $response = $this->response($results, 200, ['result_simple', 'challenge_simple']);
+
+        $redis->set($cacheKey, $response->getContent(), 300);
+
+        return $response->setTtl(300);
     }
 }
